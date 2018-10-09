@@ -3,18 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using System;
+using UnityEngine.UI;
 
 public class Character : MonoBehaviour {
 
     [SerializeField] List<Sprite> _sprites;
+    [SerializeField] Text _score;
 
     private SpriteRenderer _renderer;
     private float delay = 0.1f;
     private bool IsWalking = false;
+    private int currentScore = 0;
 
     // Use this for initialization
     void Start () {
         _renderer = this.GetComponent<SpriteRenderer>();
+        _score.text = currentScore.ToString();
 	}
 	
 	// Update is called once per frame
@@ -65,6 +69,24 @@ public class Character : MonoBehaviour {
     public void ChangeFrame4()
     {
         _renderer.sprite = _sprites[3];
+    }
+
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log(collision.gameObject.name);
+        switch(collision.gameObject.tag){
+            case "CaTim":
+                currentScore += 5;
+                break;
+            case "Bap":
+                currentScore += 5;
+                break;
+            case "KhangSinh":
+                //currentScore -= 10;
+                break;
+        }
+        _score.text = currentScore.ToString();
     }
 
 }

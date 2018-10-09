@@ -70,7 +70,9 @@
     <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleUtils.cs" />
     <Compile Include="Assets\Scripts\Character.cs" />
     <Compile Include="Assets\Scripts\Controller.cs" />
+    <Compile Include="Assets\Scripts\DeleteLine.cs" />
     <Compile Include="Assets\Scripts\GameController.cs" />
+    <Compile Include="Assets\Scripts\ItemController.cs" />
     <Compile Include="Assets\Scripts\MCPig.cs" />
     <None Include="Assets\Demigiant\DOTween\readme.txt" />
     <Reference Include="UnityEditor.StandardEvents">

@@ -33,29 +33,38 @@ public class GameController : MonoBehaviour {
             _MCPig.GetComponent<Character>().Walk();
             mousePig(isLeft);
         }
+
+        if(Input.GetKeyDown(KeyCode.LeftArrow)){
+            isLeft = true;
+            mousePig(isLeft);
+        }
+        else if(Input.GetKeyDown(KeyCode.RightArrow)){
+            isLeft = false;
+            mousePig(isLeft);
+        }
     }
 
     private void mousePig(bool toLeft){
         Vector3 touchPosWorld = _cameraMC.ScreenToWorldPoint(Input.mousePosition);
         Vector2 touchPosWorld2D = new Vector2(touchPosWorld.x, touchPosWorld.y);
-        if (!isInSideScreen(_MCPig.transform.localPosition)) return;
+        //if (!isInSideScreen(_MCPig.transform.localPosition)) return;
         if (toLeft){
-            if(isInSideScreen(_MCPig.transform.position)){
+            //if(isInSideScreen(_MCPig.transform.position)){
                 _MCPig.flipX = true; // Lat nguoc
                                      //_MCPig.sprite = Resources.Load("char_walk_1_heo.png") as Sprite;
                 _MCPig.transform.position += new Vector3(-0.1f, 0, 0);
-            }else{
-                //_MCPig.flipX = true; // Lat nguoc
-                                     //_MCPig.sprite = Resources.Load("char_walk_1_heo.png") as Sprite;
-                _MCPig.transform.position += new Vector3(0.1f, 0, 0);
-            }
+            //}else{
+            //    //_MCPig.flipX = true; // Lat nguoc
+            //                         //_MCPig.sprite = Resources.Load("char_walk_1_heo.png") as Sprite;
+            //    _MCPig.transform.position += new Vector3(0.1f, 0, 0);
+            //}
         }else{
-            if(isInSideScreen(_MCPig.transform.position)){
+            //if(isInSideScreen(_MCPig.transform.position)){
                 _MCPig.flipX = false;
                 _MCPig.transform.position += new Vector3(0.1f, 0, 0);
-            }else{
-                _MCPig.transform.position += new Vector3(-0.1f, 0, 0);
-            }
+            //}else{
+            //    _MCPig.transform.position += new Vector3(-0.1f, 0, 0);
+            //}
            
         }
     }
