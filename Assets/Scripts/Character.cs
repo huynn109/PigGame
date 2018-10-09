@@ -41,6 +41,10 @@ public class Character : MonoBehaviour {
         sequence.AppendInterval(delay);
         sequence.AppendCallback(ChangeFrame4);
         sequence.AppendInterval(delay);
+        sequence.AppendCallback(ChangeFrame5);
+        sequence.AppendInterval(delay);
+        sequence.AppendCallback(ChangeFrame6);
+        sequence.AppendInterval(delay);
         sequence.SetLoops(-1);
         sequence.SetTarget(this);
     }
@@ -71,21 +75,38 @@ public class Character : MonoBehaviour {
         _renderer.sprite = _sprites[3];
     }
 
+    public void ChangeFrame5()
+    {
+        _renderer.sprite = _sprites[4];
+    }
+
+    public void ChangeFrame6()
+    {
+        _renderer.sprite = _sprites[5];
+    }
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log(collision.gameObject.name);
         switch(collision.gameObject.tag){
             case "CaTim":
-                currentScore += 5;
+                currentScore += 5;        
                 break;
             case "Bap":
+                currentScore += 5;
+                break;
+            case "ProvimiBlue":
+                currentScore += 5;
+                break;
+            case "Sub1":
                 currentScore += 5;
                 break;
             case "KhangSinh":
                 //currentScore -= 10;
                 break;
         }
+        Destroy(collision.gameObject);
         _score.text = currentScore.ToString();
     }
 

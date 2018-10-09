@@ -22,7 +22,7 @@ public class ItemController : MonoBehaviour {
 
     private void CreateItem()
     {
-        SpriteRenderer CaTim = Instantiate(items[UnityEngine.Random.Range(0, 3)], this.transform);
+        SpriteRenderer CaTim = Instantiate(items[UnityEngine.Random.Range(0, 6)], this.transform);
         CaTim.gameObject.SetActive(true);
         float posX = UnityEngine.Random.Range(-6.0f, 6.0f);
         float posY = UnityEngine.Random.Range(6.0f, 7.0f);
