@@ -14,6 +14,14 @@ public class Character : MonoBehaviour {
     private float delay = 0.1f;
     private bool IsWalking = false;
     private int currentScore = 0;
+    private State _State = State.NONE;
+    enum State
+    {
+        NONE,
+        STOP,
+        WALK,
+        DIE
+    }
 
     // Use this for initialization
     void Start () {
@@ -26,12 +34,17 @@ public class Character : MonoBehaviour {
 		
 	}
 
+    public bool isDied()
+    {
+        return _State == State.DIE;
+    }
+
     public void Walk(){
-        if (IsWalking)
+        if (_State == State.WALK || _State == State.DIE)
         {
             return;
         }
-        IsWalking = true;
+        _State = State.WALK;
         Sequence sequence = DOTween.Sequence();
         sequence.AppendCallback(ChangeFrame1);
         sequence.AppendInterval(delay);
@@ -51,8 +64,28 @@ public class Character : MonoBehaviour {
 
     public void Stop()
     {
-        IsWalking = false;
+        if(_State == State.STOP || _State == State.DIE)
+        {
+            return;
+        }
+        _State = State.STOP;
         DOTween.Kill(this);
+    }
+
+    public void Die()
+    {
+        if (_State == State.DIE)
+        {
+            return;
+        }
+        _State = State.DIE;
+        DOTween.Kill(this);
+        Sequence sequence = DOTween.Sequence();
+        sequence.AppendCallback(ChangeFrame6);
+        sequence.AppendInterval(delay);
+        sequence.AppendCallback(ChangeFrame7);
+        sequence.AppendInterval(delay);
+       
     }
 
     public void ChangeFrame1()
@@ -85,6 +118,16 @@ public class Character : MonoBehaviour {
         _renderer.sprite = _sprites[5];
     }
 
+    public void ChangeFrame7()
+    {
+        _renderer.sprite = _sprites[6];
+    }
+
+    public void ChangeFrame8()
+    {
+        _renderer.sprite = _sprites[7];
+    }
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -103,12 +146,16 @@ public class Character : MonoBehaviour {
                 currentScore += 5;
                 break;
             case "KhangSinh":
-                //currentScore -= 10;
+                Die();
                 break;
         }
         Destroy(collision.gameObject);
         _score.text = currentScore.ToString();
     }
 
+    internal void SetLive()
+    {
+        _State = State.NONE;
+    }
 }
 

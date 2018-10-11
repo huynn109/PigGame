@@ -381,7 +381,7 @@ GameObject:
   - component: {fileID: 817132764}
   m_Layer: 8
   m_Name: ProvimiBlue
-  m_TagString: KhangSinh
+  m_TagString: ProvimiBlue
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1060,6 +1060,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 28d0034f600d64e8bb6db19ded0faca2, type: 3}
   - {fileID: 21300000, guid: 2fc67f59cd96243f1a051229b4d04b75, type: 3}
   - {fileID: 21300000, guid: ec3ea063ddfca4eda9dedac981b72b75, type: 3}
+  - {fileID: 21300000, guid: 5004f84dc727e4c9686aa3e0c6447fac, type: 3}
+  - {fileID: 21300000, guid: 6d31ab47ce6fb450cbedfc25e9dadeff, type: 3}
   _score: {fileID: 2100521555}
 --- !u!60 &1852547302
 PolygonCollider2D:
@@ -1497,7 +1499,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2069525457}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1115713327}
+        m_MethodName: OnClickButtonReplay
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &2069525457
@@ -1547,7 +1560,7 @@ GameObject:
   - component: {fileID: 2076368303}
   m_Layer: 8
   m_Name: Sub1
-  m_TagString: KhangSinh
+  m_TagString: Sub1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

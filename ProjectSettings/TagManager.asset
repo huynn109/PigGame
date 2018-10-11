@@ -7,6 +7,8 @@ TagManager:
   - CaTim
   - Bap
   - KhangSinh
+  - ProvimiBlue
+  - Sub1
   layers:
   - Default
   - TransparentFX
@@ -17,7 +19,7 @@ TagManager:
   - 
   - 
   - Game
-  - 
+  - End
   - 
   - 
   - 

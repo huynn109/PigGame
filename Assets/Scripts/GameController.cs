@@ -31,28 +31,7 @@ public class GameController : MonoBehaviour {
             _MCPig.GetComponent<Character>().Stop();
         }
 
-
-
-        //if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow))
-        //{
-        //    if (Input.GetKeyDown(KeyCode.RightArrow))
-        //    {
-        //        isLeft = false;
-        //    }
-        //    else if (Input.GetKeyDown(KeyCode.LeftArrow))
-        //    {
-        //        isLeft = true;
-        //    }
-        //    isTouching = true;
-        //}
-
-        //if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow) && isTouching)
-        //{
-        //    isTouching = false;
-        //    _MCPig.GetComponent<Character>().Stop();
-        //}
-
-        if (null != controller.GetType())
+        if (null != controller.GetType() && !_MCPig.GetComponent<Character>().isDied())
         {
             controller.handleKeypress();
             if (controller.isKeyDown("UP"))
@@ -73,12 +52,6 @@ public class GameController : MonoBehaviour {
         {
             _MCPig.GetComponent<Character>().Stop();
         }
-
-        //if (isTouching)
-        //{
-        //    _MCPig.GetComponent<Character>().Walk();
-        //    //mousePig(false);
-        //}
 
     }
 
@@ -120,32 +93,15 @@ public class GameController : MonoBehaviour {
         }
         _MCPig.flipX = isFlipx;
         _MCPig.transform.Translate(momentum * speed, Space.Self);
-        Vector3 touchPosWorld = _cameraMC.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 touchPosWorld2D = new Vector2(touchPosWorld.x, touchPosWorld.y);
-        //if (!isInSideScreen(_MCPig.transform.localPosition)) return;
-        //if (toLeft){
-        //    //if(isInSideScreen(_MCPig.transform.position)){
-        //        _MCPig.flipX = true; // Lat nguoc
-        //                             //_MCPig.sprite = Resources.Load("char_walk_1_heo.png") as Sprite;
-        //        _MCPig.transform.position += new Vector3(-0.1f, 0, 0);
-        //    //}else{
-        //    //    //_MCPig.flipX = true; // Lat nguoc
-        //    //                         //_MCPig.sprite = Resources.Load("char_walk_1_heo.png") as Sprite;
-        //    //    _MCPig.transform.position += new Vector3(0.1f, 0, 0);
-        //    //}
-        //}else{
-        //    //if(isInSideScreen(_MCPig.transform.position)){
-        //        _MCPig.flipX = false;
-        //        _MCPig.transform.position += new Vector3(0.1f, 0, 0);
-        //    //}else{
-        //    //    _MCPig.transform.position += new Vector3(-0.1f, 0, 0);
-        //    //}
-           
-        //}
     }
 
     private bool isInSideScreen(Vector3 pos){
         return pos.x >= -7 && pos.x <= 7;
+    }
+
+    public void OnClickButtonReplay()
+    {
+        _MCPig.GetComponent<Character>().SetLive();
     }
 
 }
